@@ -1,5 +1,6 @@
 module Photos
   class Gallery < ActiveRecord::Base
+    validates :name, presence: true
     has_many :pictures, :dependent => :destroy
     scope :published, -> { where(published: true) }
     belongs_to :resource, polymorphic: true

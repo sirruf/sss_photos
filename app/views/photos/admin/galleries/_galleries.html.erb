@@ -1,16 +1,57 @@
-<table>
-  <thead>
-    <th>
-      <%= Photos::Gallery.human_attribute_name('id') %>
-    </th>
-    <th>
-      <%= Photos::Gallery.human_attribute_name('name') %>
-    </th>
-    <th>
-      <%= Photos::Gallery.human_attribute_name('pic_count') %>
-    </th>
-  </thead>
-  <tbody>
-
-  </tbody>
-</table>
+<div class="pure-g">
+  <div class="pure-u-5-5">
+    <table class="pure-table pure-table-bordered">
+      <thead>
+      <th class="text-center" width="5%">
+        <%= Photos::Gallery.human_attribute_name('id') %>
+      </th>
+      <th class="text-left" width="50%">
+        <%= Photos::Gallery.human_attribute_name('name') %>
+      </th>
+      <th class="text-center" width="5%">
+        <%= Photos::Gallery.human_attribute_name('pic_count') %>
+      </th>
+      <th class="text-center" width="20%">
+        <%= Photos::Gallery.human_attribute_name('created_at') %>
+      </th>
+      <th class="text-center" width="5%">
+        <%= Photos::Gallery.human_attribute_name('published') %>
+      </th>
+      <th class="text-center" width="10%">
+      </th>
+      </thead>
+      <tbody>
+      <% @galleries.each do |gallery| %>
+          <tr>
+            <td class="text-center">
+              <%= gallery.id %>
+            </td>
+            <td class="text-left">
+              <%= gallery.name %>
+            </td>
+            <td class="text-center">
+              <%= gallery.pictures.count %>
+            </td>
+            <td class="text-center">
+              <%= l(gallery.created_at, format: :short) %>
+            </td>
+            <td class="text-center">
+              <%= gallery.published %>
+            </td>
+            <td class="text-center">
+              <%= link_to edit_admin_gallery_path(gallery), class: 'button-success pure-button' do %>
+                  <i><i class="fa fa-edit"></i> </i>
+              <% end %>
+              <%= link_to admin_gallery_path(gallery), method: :delete, class: 'button-xsmall pure-button button-error' do %>
+                  <i><i class="fa fa-trash-o"></i> </i>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <p>
+      <%= link_to t('buttons.new'), new_admin_gallery_path, class: 'pure-button' %>
+    </p>
+  </div>
+</div>

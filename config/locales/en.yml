@@ -1,2 +1,5 @@
 en:
   test: 'Test'
+  buttons:
+    new: "New"
+    edit: "Edit"

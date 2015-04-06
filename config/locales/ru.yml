@@ -1,0 +1,62 @@
+ru:
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+  activerecord:
+    models:
+      photos/gallery:
+        one: 'Галерея'
+        faw: 'Галерей'
+        many: 'Галерей'
+        other: 'Галереи'
+      photos/picture:
+        one: 'Галерея'
+        faw: 'Галерей'
+        many: 'Галерей'
+        other: 'Галереи'
+    attributes:
+      photos/gallery:
+        id: '№'
+        name: 'Название'
+        description: 'Описание'
+        published: 'Опубликовано?'
+        pic_count: 'Изображений'
+      photos/picture:
+        name: 'Название'
+        position: 'Позиция'
+        image: 'Изображение'
+        gallery: 'Галерея'
+        gallery_id: 'ID галереи'
+    errors:
+      models:
+        photos/picture:
+          attributes:
+            name:
+              too_short: 'слишком короткое.'
+              blank: 'не может быть пустым. '
+  will_paginate:
+    previous_label: "&#8592; Назад"
+    next_label: "Вперед &#8594;"
+    page_gap: "&hellip;"
+    page_entries_info:
+      single_page:
+        zero:  "No %{model} found"
+        one:   "Displaying 1 %{model}"
+        other: "Displaying all %{count} %{model}"
+      single_page_html:
+        zero:  "No %{model} found"
+        one:   "Displaying <b>1</b> %{model}"
+        other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
+
+      multi_page: "Displaying %{model} %{from} - %{to} of %{count} in total"
+      multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
+  notices:
+    messages:
+      order:
+        create_complete: "Заказ успешно оформлен."
+  errors:
+    messages:
+      order:
+        not_created: "Ошибка формирования заказа. Попробуйте повторить позже."

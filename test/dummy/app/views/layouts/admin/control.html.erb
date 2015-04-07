@@ -1,0 +1,19 @@
+<!--
+  Created by SSS:Photos Generator
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SSS Photos Administration Module</title>
+  <%= stylesheet_link_tag 'admin/control', media: 'all' %>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <%= javascript_include_tag 'admin/control' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render 'layouts/admin/nav_bar' %>
+<div class="content">
+  <%= yield %>
+</div>
+</body>
+</html>

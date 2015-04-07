@@ -4,7 +4,6 @@ module Photos
     acts_as_list scope: :gallery
 
     mount_uploader :image, ImagesUploader
-    before_save :update_orientation
 
     default_scope  { order(:position) }
 
@@ -13,11 +12,15 @@ module Photos
     end
 
     def self.landscape
-      where(orientation: 'landscape')
+      where(id: select { |m| m.orientation == 'landscape' }.map(&:id))
     end
 
     def self.portrait
-      where(orientation: 'portrait')
+      where(id: select { |m| m.orientation == 'portrait' }.map(&:id))
+    end
+
+    def orientation
+      self.height > self.width ? 'portrait' : 'landscape'
     end
 
     def available_versions
@@ -36,12 +39,6 @@ module Photos
           %w(news_top_thumb newspapper-o),
           %w(home_slider sliders)
       ].sort
-    end
-
-    private
-
-    def update_orientation
-      self.orientation = self.height > self.width ? 'portrait' : 'landscape'
     end
   end
 end

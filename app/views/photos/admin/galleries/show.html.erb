@@ -1,0 +1,44 @@
+<table class="pure-table">
+  <tbody>
+  <tr>
+    <td style="width: 20%" class="text-right text-uppercase">
+      <strong>Название</strong>
+    </td>
+    <td style="width: 80%" class="text-left">
+      <%= @gallery.name %>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 20%" class="text-right text-uppercase">
+      <strong>Дата создания</strong>
+    </td>
+    <td style="width: 80%" class="text-left">
+      <%= l @gallery.created_at, format: :short %>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 20%" class="text-right text-uppercase">
+      <strong>Дата изменения</strong>
+    </td>
+    <td style="width: 80%" class="text-left">
+      <%= l @gallery.updated_at, format: :short %>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 20%" class="text-right text-uppercase">
+      <strong>Изображений</strong>
+    </td>
+    <td style="width: 80%" class="text-left">
+      <%= @gallery.pictures.count rescue '-' %>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<p>
+  <%= link_to t('buttons.edit'), edit_admin_gallery_path(@gallery), class: 'pure-button' %>
+</p>
+<p>
+  <section class="gallery" id="images">
+    <%= render @gallery_images if @gallery_images.present? %>
+  </section>
+</p>

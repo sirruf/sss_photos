@@ -1,0 +1,58 @@
+.gallery {
+    position: relative;
+    max-width: 1024px;
+    padding: 7px;
+    color: #222;
+}
+
+.card:after {
+    display: block;
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 4px;
+    height: 4px;
+    content: '';
+}
+
+.card {
+    display: inline-block;
+    position: relative;
+    width: 20%;
+    min-width: 128px;
+    margin: 8px;
+    padding: 1%;
+    vertical-align: top;
+    background-color: #eee;
+    box-shadow: 2px 2px 4px #aaa;
+}
+
+.card:hover {
+    background-color: #f18422;
+}
+
+.card .feature {
+    display: block;
+    margin-bottom: .2em;
+    text-transform: uppercase;
+    color: orange;
+    font-size: 5em;
+    line-height: .75;
+    background-color: #444;
+    border: 1px solid #888;
+}
+
+.card .caption {
+    display: block;
+    padding-top: 8px;
+    border-top: 2px groove #888;
+}
+
+.card .caption:empty {
+    border-top-style: hidden;
+}
+
+.card .image_t {
+    max-width:100%;
+    max-height:100%;
+}

@@ -27,7 +27,7 @@
               <%= gallery.id %>
             </td>
             <td class="text-left">
-              <%= gallery.name %>
+              <%= link_to gallery.name, admin_gallery_path(gallery) %>
             </td>
             <td class="text-center">
               <%= gallery.pictures.count %>

@@ -9,4 +9,5 @@ module Photos
   require 'acts_as_list'
   require 'will_paginate'
   require 'jquery-rails'
+  require 'jquery-fileupload-rails'
 end

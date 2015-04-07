@@ -4,6 +4,7 @@ PATH
     photos (0.0.1)
       acts_as_list
       carrierwave
+      jquery-fileupload-rails
       jquery-rails
       mini_magick
       rails (~> 4.0.8)
@@ -49,6 +50,9 @@ GEM
     erubis (2.7.0)
     hike (1.2.3)
     i18n (0.7.0)
+    jquery-fileupload-rails (0.4.1)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)

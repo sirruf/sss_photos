@@ -28,7 +28,7 @@ module Photos
 
         respond_to do |format|
           if @gallery.save
-            format.html { redirect_to admin_gallery_path(@gallery), notice: 'Gallery was successfully created.' }
+            format.html { redirect_to edit_admin_gallery_path(@gallery), notice: 'Gallery was successfully created.' }
             format.json { render action: 'show', status: :created, location: @gallery }
           else
             format.html { render action: 'new' }

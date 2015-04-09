@@ -17,7 +17,8 @@
     </div>
   </div>
   <div class="feature">
-    <%= image_tag picture.image.thumb('400x400#nw').url, class: 'image_t', data: {id: picture.id} if picture.image_stored? %>
+    <%= image_tag picture.image.thumb('200x200#nw').url, class: 'image_t', data: {id: picture.id} if picture.image_stored? %>
+    <%#= thumbnail_tag picture.image, '100x100' %>
   </div>
 
   <figcaption class="caption" style="text-align: center;">

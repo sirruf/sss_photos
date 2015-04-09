@@ -7,6 +7,7 @@ Dragonfly.app.configure do
   secret "0ad3de71074d9d580bea8f6d2571f99aab6434b0c4987b276783503549615655"
 
   url_format "/media/:job/:name"
+  url_format "/media/:job/:sha/:name"
 
   datastore :file,
     root_path: Rails.root.join('uploads/images', Rails.env),

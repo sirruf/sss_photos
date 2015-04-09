@@ -18,9 +18,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 4.0.8'
   s.add_dependency 'russian'
-  s.add_dependency 'mini_magick'
-  s.add_dependency 'carrierwave'
   s.add_dependency 'acts_as_list'
+  s.add_dependency 'dragonfly'
   s.add_dependency 'will_paginate'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-fileupload-rails'

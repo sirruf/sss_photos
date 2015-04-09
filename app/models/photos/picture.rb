@@ -3,7 +3,8 @@ module Photos
     belongs_to :gallery
     acts_as_list scope: :gallery
 
-    mount_uploader :image, ImagesUploader
+    dragonfly_accessor :image
+    #mount_uploader :image, ImagesUploader
 
     default_scope  { order(:position) }
 
@@ -11,34 +12,13 @@ module Photos
       where.not(gallery_id: nil).sample(count)
     end
 
-    def self.landscape
-      where(id: select { |m| m.orientation == 'landscape' }.map(&:id))
-    end
+    validates :image, presence: true
 
-    def self.portrait
-      where(id: select { |m| m.orientation == 'portrait' }.map(&:id))
-    end
+    validates :image, presence: true
+    validates_size_of :image, maximum: 3.megabytes,
+                      message: 'should be no more than 500 KB', if: :image_changed?
 
-    def orientation
-      self.height > self.width ? 'portrait' : 'landscape'
-    end
-
-    def available_versions
-      result = []
-      Picture.available_versions.each do |version|
-        #result << version if self.image.url(version[0].to_sym).exist?
-        result << self.image.thumb.file.exists?
-      end
-      result
-    end
-
-    def self.available_versions
-      [
-          %w(thumb compress),
-          %w(home_gallery home),
-          %w(news_top_thumb newspapper-o),
-          %w(home_slider sliders)
-      ].sort
-    end
+    validates_property :format, of: :image, in: [:jpeg, :jpg, :png, :bmp], case_sensitive: false,
+                       message: 'should be either .jpeg, .jpg, .png, .bmp', if: :image_changed?
   end
 end

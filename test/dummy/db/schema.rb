@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406173152) do
+ActiveRecord::Schema.define(version: 20150409213620) do
 
   create_table "photos_galleries", force: true do |t|
     t.string   "name"
@@ -26,12 +26,11 @@ ActiveRecord::Schema.define(version: 20150406173152) do
   create_table "photos_pictures", force: true do |t|
     t.string   "name"
     t.integer  "position"
-    t.string   "image"
     t.integer  "gallery_id"
-    t.string   "width"
-    t.string   "height"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_uid"
+    t.string   "image_name"
   end
 
 end

@@ -61,7 +61,7 @@ module Photos
     end
 
     def picture_params
-      params.require(:picture).permit(:image, :gallery_id, :image_cache)
+      params.require(:picture).permit(:image, :gallery_id)
     end
 
   end

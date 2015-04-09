@@ -17,16 +17,18 @@
     </div>
   </div>
   <div class="feature">
-    <%= image_tag picture.image_url(:thumb), class: 'image_t', data: {id: picture.id} rescue nil %>
+    <%= image_tag picture.image.thumb('400x400#nw').url, class: 'image_t', data: {id: picture.id} if picture.image_stored? %>
   </div>
 
   <figcaption class="caption" style="text-align: center;">
-    <% if picture.orientation == 'landscape' %>
+    <% if picture.image.landscape? %>
         <span data-toggle="tooltip" data-placement="top" title="Альбомная ориентация">Landscape,</span>
-    <% else %>
+    <% elsif picture.image.portrait? %>
         <span data-toggle="tooltip" data-placement="top" title="Портретная ориентация">Portrait,</span>
+    <% else %>
+        <span data-toggle="tooltip" data-placement="top" title="Квадрат">Square,</span>
     <% end %>
-    <span data-toggle="tooltip" data-placement="top" title="Размеры"> <%= picture.height %>x<%= picture.width %></span>
+    <span data-toggle="tooltip" data-placement="top" title="Размеры"> <%= picture.image.height %>x<%= picture.image.width %></span>
     <span style="text-align: right">
       <%= link_to 'x', admin_gallery_picture_path(picture.gallery, picture), method: :delete, class: '', remote: true, data: {confirm: 'Вы уверены?'} %>
     </span>
@@ -40,6 +42,5 @@
 </figure>
 
 
-      <!--<span class="label <%= picture.first? ? 'label-success' : 'label-info' %>"><%= picture.position %></span>-->
 
 

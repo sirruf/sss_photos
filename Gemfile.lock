@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    photos (0.0.1)
+    photos (0.0.2)
       acts_as_list
       dragonfly
       jquery-fileupload-rails

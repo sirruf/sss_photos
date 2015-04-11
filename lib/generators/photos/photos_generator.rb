@@ -1,4 +1,4 @@
-class PhotosGenerator < Rails::Generators::NamedBase
+class PhotosGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
   def copy_views_files
     # Layouts

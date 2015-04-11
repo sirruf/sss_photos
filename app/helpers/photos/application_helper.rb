@@ -1,5 +1,5 @@
 module Photos
   module ApplicationHelper
-    include FontAwesome::Rails::IconHelper
   end
 end
+include FontAwesome::Rails::IconHelper

@@ -1,3 +1,18 @@
-<div>
-  <%= render 'galleries' %>
+<div class="panel panel-default">
+  <div class="panel-heading"><%= Photos::Gallery.model_name.human(count: 2.1) %>
+    <div class="btn-group pull-right">
+      <%= link_to fa_icon('plus'), new_admin_gallery_path, class: 'btn btn-default btn-xs' %>
+    </div>
+    <div class="clearfix"></div>
+
+
+  </div>
+  <div class="panel-body">
+    <div class="form-group pull-right">
+    </div>
+    <div id="menu_items">
+      <%= render 'galleries' %>
+    </div>
+  </div>
 </div>
+

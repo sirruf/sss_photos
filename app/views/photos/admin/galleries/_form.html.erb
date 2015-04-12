@@ -1,56 +1,85 @@
-<div class="pure-g">
-  <div class="pure-u-14-24">
-    <%= form_for([:admin, @gallery], html: { class: 'pure-form pure-form-aligned'} ) do |f| %>
-        <div class="pure-control-group">
-          <%= f.label :name %>
-          <%= f.text_field :name, class: 'pure-input-1-2' %>
-        </div>
-        <div class="pure-control-group">
-          <%= f.label :description %>
-          <%= f.text_area :description, class: 'pure-input-1-2' %>
-        </div>
-
-        <div class="pure-controls">
-          <%= f.label :published, class: 'pure-checkbox' do %>
-              <%= f.check_box :published %> <%= Photos::Gallery.human_attribute_name('published') %>
-          <%  end %>
-          <p>
-            <%= f.submit class: 'pure-button pure-button-primary' %>
-          </p>
-        </div>
-    <% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Параметры галереи <%= "'#{@gallery.name}'" unless @gallery.new_record? %>
   </div>
-  <div class="pure-u-10-24">
-    <% unless @gallery.new_record? %>
-        <fieldset>
-          <legend>Загрузка изображений в галерею</legend>
-          <%= form_for([:admin, @gallery, Photos::Picture.new], remote: false, :html => {:class => 'form-horizontal', :multipart => true}) do |f| %>
-              <div class="form-group">
-                <%= f.label :images, class: "col-sm-2 control-label" %>
-                <div class="col-sm-2">
-                      <span class="btn btn-default btn-file btn-sm">
-                          <%= f.hidden_field :gallery_id, value: @gallery.id %>
-                        <%= f.file_field :image, multiple: true, name: 'picture[image]' %>
-                      </span>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <%= form_for([:admin, @gallery], html: {class: "form-horizontal"}) do |f| %>
+            <fieldset>
+
+              <div class="form-group <%= 'has-error' if @gallery.errors[:name].present? %>">
+                <%= f.label :name, class: 'col-sm-3 control-label' %>
+                <div class="col-sm-4">
+                  <%= f.text_field :name, class: 'form-control input-sm' %>
+                  <% if @gallery.errors[:name].present? %>
+                      <label class="control-label" for="inputError1"><%= get_devise_error(@gallery, :name) %></label>
+                  <% end %>
                 </div>
               </div>
-          <% end %>
-          <div id="document_progressbar">
-            <div class="progress">
-              <div class="progress-bar progress-bar-default document-progress-bar"></div>
-            </div>
-          </div>
-        </fieldset>
-    <% end %>
 
-    <% unless @gallery.new_record? %>
-        <section class="gallery" id="images">
-        <%= render @gallery_images if @gallery_images.present? %>
-        </section>
-    <% end %>
-  </div>
+              <div class="form-group <%= 'has-error' if @gallery.errors[:description].present? %>">
+                <%= f.label :description, class: 'col-sm-3 control-label' %>
+                <div class="col-xs-9">
+                  <%= f.text_area :description, class: 'form-control input-sm' %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :published, class: "col-sm-3 control-label" %>
+                <div class="col-sm-2">
+                  <%= f.check_box :published, class: "form-control" %>
+                </div>
+              </div>
+            </fieldset>
+            <div class="clearfix"></div>
+
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+
+              </div>
+
+            </div>
+            <hr class="clearfix">
+            </div>
+  <div class="panel-footer text-right">
+              <%= f.submit 'Сохранить', class: 'btn btn-default' %>
+
+              <% end %>
+
+             </div>
 </div>
 
 
+<% unless @gallery.new_record? %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= form_for([:admin, @gallery, Photos::Picture.new], remote: false, :html => {:class => '', :multipart => true}) do |f| %>
+            <%= f.hidden_field :gallery_id, value: @gallery.id %>
+            <%= f.file_field :image, multiple: true, name: 'picture[image]' %>
+        <% end %>
+        <hr/>
+        <ul id="images" class="list-unstyled">
+          <%= render @gallery_images if @gallery_images.present? %>
+        </ul>
 
+      </div>
+      </div>
+<% end %>
 
+<!--&lt;!&ndash;<script>&ndash;&gt;-->
+<!--//    $( document ).ready(function() {-->
+<!--//        $(".pic-info").hide();-->
+<!--//    });-->
+<!--//-->
+<!--//    $("li").on({-->
+<!--//        mouseenter: function () {-->
+<!--//            $(this).children().find('div:first').fadeIn();-->
+<!--//        },-->
+<!--//        mouseleave: function () {-->
+<!--//            $(this).children().find('div:first').fadeOut();-->
+<!--//        }-->
+<!--//    });-->
+<!--&lt;!&ndash;</script>&ndash;&gt;-->

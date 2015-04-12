@@ -1,10 +1,10 @@
 module Photos
   class Engine < ::Rails::Engine
     isolate_namespace Photos
-    config.to_prepare do
-      ApplicationController.helper(EnginesHelper)
-      ApplicationController.helper(FlashHelper)
-    end
+    # config.to_prepare do
+    #   ApplicationController.helper(EnginesHelper)
+    #   ApplicationController.helper(FlashHelper)
+    # end
   end
   require 'rubygems'
   require 'russian'

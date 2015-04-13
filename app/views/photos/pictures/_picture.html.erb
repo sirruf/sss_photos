@@ -1,6 +1,9 @@
 <li class="col-md-3" id="<%= dom_id(picture) %>">
   <div class="thumbnail">
-    <%= image_tag picture.image.thumb('230x230#nw').url, class: 'image_t', data: {id: picture.id} if picture.image_stored? %>
+    <%= link_to admin_picture_path(picture) do %>
+        <%= image_tag picture.image.thumb('230x230#nw').url, class: 'image_t', data: {id: picture.id} if picture.image_stored? %>
+    <% end %>
+
     <div class="text-center pic-info">
       ID: <%= picture.id %>,
       <% if picture.image.landscape? %>

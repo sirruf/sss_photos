@@ -13,4 +13,5 @@ module Photos
   require 'will_paginate'
   require 'jquery-rails'
   require 'jquery-fileupload-rails'
+  require 'font-awesome-rails'
 end

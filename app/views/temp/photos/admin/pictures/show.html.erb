@@ -1,0 +1,48 @@
+<h3>Параметры изображения</h3>
+<hr>
+<div class="row">
+  <div class="col-sm-3 text-center">
+    <%= link_to @product_image.image_file_url(:feature) do %>
+        <%= image_tag @product_image.image_file_url(:feature), class: 'img-thumbnail img-responsive' %>
+    <% end %>
+    <dl>
+      <dt>Вариант для раздела "Новинки"</dt>
+      <dd>500 x 500</dd>
+    </dl>
+  </div>
+  <div class="col-sm-3 text-center">
+    <%= link_to @product_image.image_file_url do %>
+        <%= image_tag @product_image.image_file_url, class: 'img-thumbnail img-responsive' %>
+    <% end %>
+    <dl>
+      <dt>Оригинальный размер</dt>
+      <dd><%= @product_image.width %> x <%= @product_image.height %></dd>
+    </dl>
+  </div>
+  <div class="col-sm-3 text-center">
+    <%= link_to @product_image.image_file_url(:show) do %>
+        <%= image_tag @product_image.image_file_url(:show), class: 'img-thumbnail img-responsive' %>
+    <% end %>
+    <dl>
+      <dt>Вариант для карточки товара</dt>
+      <dd>800 x 500</dd>
+    </dl>
+  </div>
+  <div class="col-sm-3 text-center">
+    <%= link_to @product_image.image_file_url(:index) do %>
+        <%= image_tag @product_image.image_file_url(:index), class: 'img-thumbnail img-responsive' %>
+    <% end %>
+    <dl>
+      <dt>Вариант для раздела категории</dt>
+      <dd>320 x 150</dd>
+    </dl>
+    <%= link_to @product_image.image_file_url(:thumb) do %>
+        <%= image_tag @product_image.image_file_url(:thumb), class: 'img-thumbnail img-responsive' %>
+    <% end %>
+    <dl>
+      <dt>Мини-изображение</dt>
+      <dd>64 x 64</dd>
+    </dl>
+  </div>
+</div>
+<hr>

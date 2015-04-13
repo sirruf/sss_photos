@@ -1,0 +1,2 @@
+$('#image').html('<%= escape_javascript(render('picture')) %>');
+$('#image_url').html('<small><%= link_to image_url(@picture.image.thumb(@size).url), image_url(@picture.image.thumb(@size).url)%></small');

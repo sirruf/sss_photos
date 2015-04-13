@@ -1,48 +1,132 @@
-<h3>Параметры изображения</h3>
-<hr>
-<div class="row">
-  <div class="col-sm-3 text-center">
-    <%= link_to @product_image.image_file_url(:feature) do %>
-        <%= image_tag @product_image.image_file_url(:feature), class: 'img-thumbnail img-responsive' %>
-    <% end %>
-    <dl>
-      <dt>Вариант для раздела "Новинки"</dt>
-      <dd>500 x 500</dd>
-    </dl>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Параметры оригинального изображения
+    <%= "##{@picture.id}" %><%= " (#{@picture.name})" if @picture.name.present? %>
   </div>
-  <div class="col-sm-3 text-center">
-    <%= link_to @product_image.image_file_url do %>
-        <%= image_tag @product_image.image_file_url, class: 'img-thumbnail img-responsive' %>
-    <% end %>
-    <dl>
-      <dt>Оригинальный размер</dt>
-      <dd><%= @product_image.width %> x <%= @product_image.height %></dd>
-    </dl>
-  </div>
-  <div class="col-sm-3 text-center">
-    <%= link_to @product_image.image_file_url(:show) do %>
-        <%= image_tag @product_image.image_file_url(:show), class: 'img-thumbnail img-responsive' %>
-    <% end %>
-    <dl>
-      <dt>Вариант для карточки товара</dt>
-      <dd>800 x 500</dd>
-    </dl>
-  </div>
-  <div class="col-sm-3 text-center">
-    <%= link_to @product_image.image_file_url(:index) do %>
-        <%= image_tag @product_image.image_file_url(:index), class: 'img-thumbnail img-responsive' %>
-    <% end %>
-    <dl>
-      <dt>Вариант для раздела категории</dt>
-      <dd>320 x 150</dd>
-    </dl>
-    <%= link_to @product_image.image_file_url(:thumb) do %>
-        <%= image_tag @product_image.image_file_url(:thumb), class: 'img-thumbnail img-responsive' %>
-    <% end %>
-    <dl>
-      <dt>Мини-изображение</dt>
-      <dd>64 x 64</dd>
-    </dl>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-striped">
+          <tr>
+            <th width="20%" class="text-center">Имя файла: </th>
+            <td><%= @picture.image.basename %>.<%= @picture.image.ext %></td>
+          </tr>
+          <tr>
+            <th width="20%" class="text-center">Тип: </th>
+            <td><%= @picture.image.mime_type %></td>
+          </tr>
+          <tr>
+            <th width="20%" class="text-center">Размер: </th>
+            <td><%= @picture.image.size %> bytes</td>
+          </tr>
+          <tr>
+            <th width="20%" class="text-center">Ширина: </th>
+            <td><%= @picture.image.width %> px</td>
+          </tr>
+          <tr>
+            <th width="20%" class="text-center">Высота: </th>
+            <td><%= @picture.image.height %> px</td>
+          </tr>
+          <tr>
+            <th width="20%" class="text-center">Требуемый размер: </th>
+            <td>
+              <%= form_tag resize_admin_picture_path(@picture), method: :post, remote: true, class: 'text-muted', :authenticity_token => true do %>
+                  <%= text_field(:picture, :image_size, id: @picture.id, placeholder: '400x300', class: 'col-sm-2 text-center') %>
+                  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#sizes_help" style="margin-left: 10px;">
+                    <%= fa_icon('question') %>
+                  </button>
+
+            <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th width="20%" class="text-center">Ссылка:</th>
+            <td id="image_url">
+              <%#= link_to('Постоянная ссылка на оригинальное изображение', image_url(@picture.image.url)) %>
+              <small><%= link_to image_url(@picture.image.url), image_url(@picture.image.url) %></small>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12" id="image">
+        <%= render 'picture' %>
+      </div>
+    </div>
   </div>
 </div>
-<hr>
+
+<!-- Modal -->
+<div class="modal fade" id="sizes_help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Примеры указания требуемого размера</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped text-muted">
+          <tr>
+            <td class="text-center"><code>400x300</code></td>
+            <td>Изменить размер, сохранить пропорции</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300!</code></td>
+            <td>Изменить размер, без сохранения пропорций</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x</code></td>
+            <td>Изменить ширину, сохранить пропорции</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>x300</code></td>
+            <td>Изменить высоту, сохранить пропорции</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300<</code></td>
+            <td>Изменить размер, если изображение меньше</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300></code></td>
+            <td>Изменить размер, если изображение больше</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>50x50%></code></td>
+            <td>Изменить ширину и высоту до 50%</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300^</code></td>
+            <td>Изменить ширину, высоту до минимального 400x300, сохранить пропорции</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>2000@</code></td>
+            <td>Изменить размер до максимальной площади 2000 пикселей</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300#</code></td>
+            <td>Изменить размер, обрезать, если необходимо поддерживать соотношение сторон (центрировать)</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300#ne</code></td>
+            <td>тоже что и выше, выбрать от угла север-восток</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300se</code></td>
+            <td>обрезать, выбрать от угла север-восток</td>
+          </tr>
+          <tr>
+            <td class="text-center"><code>400x300+50+100</code></td>
+            <td>обрезать с точки 50,100 с шириной, высотой 400,300</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,9 +1,6 @@
 Photos::Engine.routes.draw do
 
   resources :galleries, only: [:index, :show]
-  get "image" => Dragonfly.app.endpoint { |params, app|
-        app.fetch_file("some/dir/#{params[:file]}").thumb(params[:size])
-      }
   namespace :admin do
     resources :galleries do
       member do
@@ -17,6 +14,11 @@ Photos::Engine.routes.draw do
           post 'last_position'
           post 'edit_name'
         end
+      end
+    end
+    resources :pictures, only: [:show] do
+      member do
+        post 'resize'
       end
     end
   end

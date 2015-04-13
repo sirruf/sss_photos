@@ -6,6 +6,8 @@ module Photos
     dragonfly_accessor :image
     #mount_uploader :image, ImagesUploader
 
+    attr_accessor :image_size
+
     default_scope  { order(:position) }
 
     def self.random_images(count = 3)

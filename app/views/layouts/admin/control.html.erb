@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SSS Photos Administration Module</title>
-  <%= stylesheet_link_tag 'admin/control', media: 'all' %>
+  <title>Photos</title>
+  <%= stylesheet_link_tag    "photos/application", media: "all" %>
+  <%= javascript_include_tag 'photos/application' %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <%= javascript_include_tag 'admin/control' %>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render 'layouts/admin/nav_bar' %>
-<div class="content">
-  <%= yield %>
+<div class="container">
+  <div class="row">
+    <%= yield %>
+  </div>
 </div>
 </body>
 </html>

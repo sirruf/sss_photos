@@ -40,7 +40,7 @@ module Photos
       def update
         respond_to do |format|
           if @gallery.update(gallery_params)
-            format.html { redirect_to admin_gallery_path(@gallery), notice: 'Gallery was successfully updated.' }
+            format.html { redirect_to edit_admin_gallery_path(@gallery), notice: 'Gallery was successfully updated.' }
             format.json { head :no_content }
           else
             format.html { render action: 'edit' }

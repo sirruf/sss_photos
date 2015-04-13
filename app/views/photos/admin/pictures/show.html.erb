@@ -20,6 +20,12 @@
             <td><%= @picture.image.size %> bytes</td>
           </tr>
           <tr>
+            <th width="20%" class="text-center">Ориентация: </th>
+            <td>
+              <span class="text-capitalize"><%= @picture.orientation %></span>
+            </td>
+          </tr>
+          <tr>
             <th width="20%" class="text-center">Ширина: </th>
             <td><%= @picture.image.width %> px</td>
           </tr>
@@ -31,7 +37,7 @@
             <th width="20%" class="text-center">Требуемый размер: </th>
             <td>
               <%= form_tag resize_admin_picture_path(@picture), method: :post, remote: true, class: 'text-muted', :authenticity_token => true do %>
-                  <%= text_field(:picture, :image_size, id: @picture.id, placeholder: '400x300', class: 'col-sm-2 text-center') %>
+                  <%= text_field(:picture, :image_size, id: @picture.id, placeholder: "#{@picture.image.width}x#{@picture.image.height}", class: 'col-sm-2 text-center') %>
                   <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#sizes_help" style="margin-left: 10px;">
                     <%= fa_icon('question') %>
                   </button>

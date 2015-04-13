@@ -4,15 +4,7 @@ module Photos
     acts_as_list scope: :gallery
 
     dragonfly_accessor :image
-    #mount_uploader :image, ImagesUploader
-
     attr_accessor :image_size
-
-    default_scope  { order(:position) }
-
-    def self.random_images(count = 3)
-      where.not(gallery_id: nil).sample(count)
-    end
 
     validates :image, presence: true
 
@@ -22,5 +14,23 @@ module Photos
 
     validates_property :format, of: :image, in: [:jpeg, :jpg, :png, :bmp], case_sensitive: false,
                        message: 'should be either .jpeg, .jpg, .png, .bmp', if: :image_changed?
+
+    default_scope  { order(:position) }
+
+    def self.random_images(count = 3)
+      where.not(gallery_id: nil).sample(count)
+    end
+
+
+    def orientation
+      if image.landscape?
+        :landscape
+      elsif image.portrait?
+        :portrait
+      else
+        :square
+      end
+    end
+
   end
 end

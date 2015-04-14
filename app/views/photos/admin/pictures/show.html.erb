@@ -47,9 +47,8 @@
           </tr>
           <tr>
             <th width="20%" class="text-center">Ссылка:</th>
-            <td id="image_url">
-              <%#= link_to('Постоянная ссылка на оригинальное изображение', image_url(@picture.image.url)) %>
-              <small><%= link_to image_url(@picture.image.url), image_url(@picture.image.url) %></small>
+            <td id="image_url" style="font-size: 0.9em;">
+              <%= link_to 'Ссылка на оригинал', image_url(@picture.image.url), target: '_blank' %>
             </td>
           </tr>
         </table>

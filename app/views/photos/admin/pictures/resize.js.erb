@@ -1,2 +1,2 @@
-$('#image').html('<%= escape_javascript(render('picture')) %>');
-$('#image_url').html('<small><%= link_to image_url(@picture.image.thumb(@size).url), image_url(@picture.image.thumb(@size).url)%></small');
+$('#image').html('<%= escape_javascript(render partial: 'photos/admin/pictures/image', local: {picture: @picture}) %>');
+$('#image_url').html('<%= link_to 'Ссылка на изображение текущего размера', image_url(@picture.image.thumb(@size).url), target: '_blank' %>');

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    photos (0.0.6)
+    photos (0.0.7)
       acts_as_list
       dragonfly
       font-awesome-rails

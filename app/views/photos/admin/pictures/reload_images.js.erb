@@ -1,1 +1,1 @@
-$('#images').html('<%= escape_javascript(render(@gallery_images)) %>');
+$('#images').html('<%= escape_javascript(render partial: 'photos/admin/pictures/picture', collection: @gallery_images) %>');

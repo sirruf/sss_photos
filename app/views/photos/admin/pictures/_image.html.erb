@@ -1,0 +1,11 @@
+<div>
+  <% if @size.present? %>
+      <%= link_to @picture.image.thumb(@size).url do %>
+          <%= image_tag @picture.image.thumb(@size).url, class: 'img-thumbnail', data: {id: @picture.id} if @picture.image_stored? %>
+      <% end %>
+  <% else %>
+      <%= link_to @picture.image.url do %>
+          <%= image_tag @picture.image.url, class: 'img-thumbnail', data: {id: @picture.id} if @picture.image_stored? %>
+      <% end %>
+  <% end %>
+</div>

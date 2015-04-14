@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div>
+      <%= image_tag(@picture.image.url, class: 'img-thumbnail') %>
+    </div>
+    <div class="text-right text-muted">
+      <%= @picture.name if @picture.name.present? %>
+    </div>
+  </div>
+</div>

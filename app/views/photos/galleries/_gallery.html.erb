@@ -1,0 +1,7 @@
+<li class="col-md-3" id="<%= dom_id(gallery) %>">
+  <div class="thumbnail">
+    <%= link_to gallery_path(gallery) do %>
+        <%= image_tag gallery.pictures.first.image.thumb('250x250#nw').url, class: 'image_t', data: {id: gallery.pictures.first.id} if gallery.pictures.first.image_stored? %>
+    <% end %>
+  </div>
+</li>

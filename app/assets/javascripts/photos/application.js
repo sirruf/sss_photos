@@ -12,4 +12,32 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require_tree .
+
+jQuery(function() {
+    $("#document_progressbar").hide();
+    return $('#new_picture').fileupload({
+        dataType: 'script',
+        progressall: function(e, data) {
+            var progress;
+            $("#document_progressbar").fadeIn();
+            progress = parseInt(data.loaded / data.total * 100, 10);
+            $(".progress .document-progress-bar").css("width", progress + "%");
+            return $(".progress .document-progress-bar").text(progress + "%");
+        },
+        done: function(e, data) {
+            return $("#document_progressbar").hide();
+        },
+        stop: function(e, data) {
+            return setTimeout((function() {
+                return $("#document_progressbar").hide();
+            }), 1000);
+        },
+        fail: function(e, data) {
+            return $("#document_progressbar").hide();
+        }
+    });
+});
+

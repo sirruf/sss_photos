@@ -1,6 +1,8 @@
 Photos::Engine.routes.draw do
 
-  resources :galleries, only: [:index, :show]
+  resources :galleries, only: [:index, :show] do
+    resources :pictures, only: [:show]
+  end
   namespace :admin do
     resources :galleries do
       member do

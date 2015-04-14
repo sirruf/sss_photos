@@ -1,6 +1,6 @@
 <li class="col-md-3" id="<%= dom_id(picture) %>">
   <div class="thumbnail">
-    <%= link_to admin_picture_path(picture) do %>
+    <%= link_to gallery_picture_path(picture.gallery, picture) do %>
         <%= image_tag picture.image.thumb('250x250#nw').url, class: 'image_t', data: {id: picture.id} if picture.image_stored? %>
     <% end %>
 
@@ -24,14 +24,6 @@
             <% end %>
           </div>
       <% end %>
-      <div class="btn-group" role="group" aria-label="..." style="margin-top: 10px; margin-bottom: 10px;">
-        <%= link_to fa_icon('angle-double-left'), first_position_admin_gallery_picture_path(picture.gallery.id, picture.id), remote: true, method: :post, class: "btn btn-default btn-xs #{'disabled' if picture.first? }" %>
-        <%= link_to fa_icon('angle-left'), up_position_admin_gallery_picture_path(picture, gallery_id: picture.gallery.id), remote: true, method: :post, class: 'btn btn-default btn-xs' %>
-        <button class="btn btn-default btn-xs disabled"><%= picture.position %></button>
-        <%= link_to fa_icon('angle-right'), down_position_admin_gallery_picture_path(picture, gallery_id: picture.gallery.id), remote: true, method: :post, class: 'btn btn-default btn-xs' %>
-        <%= link_to fa_icon('angle-double-right'), last_position_admin_gallery_picture_path(picture, gallery_id: picture.gallery.id), remote: true, method: :post, class: "btn btn-default btn-xs #{'disabled' if picture.last? }" %>
-        <%= link_to fa_icon('trash-o'), admin_gallery_picture_path(picture.gallery, picture), method: :delete, class: 'btn btn-danger btn-xs', remote: true, data: {confirm: 'Вы уверены?'} %>
-      </div>
     </div>
   </div>
 

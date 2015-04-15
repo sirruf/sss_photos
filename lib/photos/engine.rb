@@ -1,9 +1,9 @@
 module Photos
   class Engine < ::Rails::Engine
     isolate_namespace Photos
-    config.to_prepare do
-      ApplicationController.helper(ActionView::Helpers::ApplicationHelper)
-    end
+    # config.to_prepare do
+    #   ApplicationController.helper(ActionView::Helpers::ApplicationHelper)
+    # end
     # config.to_prepare do
     #   ApplicationController.helper(EnginesHelper)
     #   ApplicationController.helper(FlashHelper)

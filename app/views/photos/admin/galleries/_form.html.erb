@@ -25,6 +25,16 @@
                 </div>
               </div>
 
+              <div class="form-group <%= 'has-error' if @gallery.errors[:meta_keywords].present? %>">
+                <%= f.label :meta_keywords, class: 'col-sm-3 control-label' %>
+                <div class="col-sm-4">
+                  <%= f.text_field :meta_keywords, class: 'form-control input-sm' %>
+                  <% if @gallery.errors[:meta_keywords].present? %>
+                      <label class="control-label" for="inputError1"><%= get_devise_error(@gallery, :meta_keywords) %></label>
+                  <% end %>
+                </div>
+              </div>
+
               <div class="form-group">
                 <%= f.label :published, class: "col-sm-3 control-label" %>
                 <div class="col-sm-2">
@@ -44,13 +54,13 @@
             </div>
             <hr class="clearfix">
             </div>
-  <div class="panel-footer text-right">
+            <div class="panel-footer text-right">
               <%= f.submit 'Сохранить', class: 'btn btn-default' %>
 
-              <% end %>
+        <% end %>
 
-             </div>
-</div>
+        </div>
+        </div>
 
 
 <% unless @gallery.new_record? %>
@@ -66,7 +76,7 @@
         </ul>
 
       </div>
-      </div>
+    </div>
 <% end %>
 
 <!--&lt;!&ndash;<script>&ndash;&gt;-->

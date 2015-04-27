@@ -4,10 +4,13 @@ module Photos
 
     def index
       @galleries = Gallery.published.paginate(:page => params[:page], :per_page => 20)
+      @title = 'Фотогалереи'
     end
 
 
     def show
+      @meta_keywords = @gallery.meta_keywords if @gallery.meta_keywords.present?
+      @title = @gallery.name
       @pictures = @gallery.pictures.paginate(:page => params[:page], :per_page => 20)
     end
 

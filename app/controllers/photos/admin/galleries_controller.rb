@@ -75,7 +75,7 @@ module Photos
       end
 
       def gallery_params
-        params.require(:gallery).permit(:name, :description, :published)
+        params.require(:gallery).permit(:name, :description, :published, :meta_keywords)
       end
 
       def set_gallery

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409213620) do
+ActiveRecord::Schema.define(version: 20150427023350) do
 
   create_table "photos_galleries", force: true do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150409213620) do
     t.integer  "resource_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "meta_keywords"
   end
 
   create_table "photos_pictures", force: true do |t|

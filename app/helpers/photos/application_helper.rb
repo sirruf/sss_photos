@@ -40,6 +40,15 @@ module Photos
       end
       nil
     end
+    def menu_item_by_link
+      Menu::MenuItem.by_link(request.path) rescue nil
+    end
+
+    def subnav_items
+      if menu_item_by_link.present?
+        menu_item_by_link.level >= 2 ? menu_item_by_link.self_and_siblings : menu_item_by_link.children rescue nil
+      end
+    end
 
   end
 end

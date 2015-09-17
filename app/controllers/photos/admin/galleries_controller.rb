@@ -87,7 +87,7 @@ module Photos
       end
 
       def set_breadcrumbs
-        @breadcrumbs = [{name: 'Главная', link: main_app.admin_path}, {name: 'Галереи', link: photos.galleries_path}]
+        @breadcrumbs = [{name: 'Главная', link: main_app.admin_path}, {name: 'Галереи', link: photos.admin_galleries_path}]
       end
 
     end

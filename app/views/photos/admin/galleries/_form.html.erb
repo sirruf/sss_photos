@@ -72,7 +72,8 @@
         <% end %>
         <hr/>
         <ul id="images" class="list-unstyled">
-          <%= render @gallery_images if @gallery_images.present? %>
+          <%#= render @gallery_images if @gallery_images.present? %>
+          <%= render partial: 'photos/admin/pictures/picture', collection: @gallery_images if @gallery_images.present? %>
         </ul>
 
       </div>

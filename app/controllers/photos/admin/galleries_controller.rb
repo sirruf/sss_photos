@@ -4,7 +4,7 @@ module Photos
       before_filter :authenticate_admin! if defined? Devise
       helper_method :sort_column, :sort_direction
       before_action :set_gallery, only: [:show, :edit, :update, :destroy, :render_versions]
-
+      before_action :set_breadcrumbs
       layout 'admin/control'
 
       def index
@@ -12,14 +12,18 @@ module Photos
       end
 
       def new
+        @breadcrumbs << {name: 'Новая галерея', link: nil}
         @gallery = Gallery.new
       end
 
       def show
+        @breadcrumbs << {name: @gallery.name, link: ''}
         @gallery_images = @gallery.pictures.order(:position)
       end
 
       def edit
+        @breadcrumbs << {name: @gallery.name, link: admin_gallery_path(@gallery)}
+        @breadcrumbs << {name: 'Редактирование', link: nil}
         @gallery_images = @gallery.pictures.order(:position)
       end
 
@@ -80,6 +84,10 @@ module Photos
 
       def set_gallery
         @gallery = Gallery.find(params[:id])
+      end
+
+      def set_breadcrumbs
+        @breadcrumbs = [{name: 'Главная', link: main_app.admin_path}, {name: 'Галереи', link: photos.galleries_path}]
       end
 
     end

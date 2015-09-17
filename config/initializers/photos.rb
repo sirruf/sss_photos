@@ -37,3 +37,12 @@ module Photos
     end
   end
 end
+
+config = YAML.load_file("#{Rails.root}/config/modules_config.yml")['modules']['photos']
+if config.present?
+  config.each do |key, value|
+    Photos.send("#{key}=", value) rescue nil
+  end
+end
+
+

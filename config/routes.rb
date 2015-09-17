@@ -15,6 +15,7 @@ Photos::Engine.routes.draw do
           post 'first_position'
           post 'last_position'
           post 'edit_name'
+          post 'on_home_status'
         end
       end
     end

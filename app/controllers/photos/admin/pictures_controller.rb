@@ -3,8 +3,8 @@ module Photos
     class PicturesController < ApplicationController
       # noinspection RailsParamDefResolve
       before_filter :authenticate_admin! if defined? Devise
-      before_action :set_picture, only: [:show, :destroy, :up_position, :down_position, :first_position, :last_position, :edit_name, :resize]
-      before_action :set_gallery, only: [:up_position, :down_position, :first_position, :last_position]
+      before_action :set_picture, only: [:show, :destroy, :up_position, :down_position, :first_position, :last_position, :edit_name, :on_home_status, :resize]
+      before_action :set_gallery, only: [:up_position, :down_position, :first_position, :last_position, :on_home_status]
 
       layout 'admin/control'
 
@@ -47,6 +47,15 @@ module Photos
 
       def edit_name
         @picture.update(name: params[:picture][:name])
+      end
+
+      def on_home_status
+        if @picture.on_home
+          @picture.update(on_home: false)
+        else
+          @picture.update(on_home: true)
+        end
+        render 'reload_images'
       end
 
       def resize

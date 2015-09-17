@@ -6,32 +6,36 @@
 
     <div class="text-center pic-info">
       <div style="margin-top: 10px; margin-bottom: 10px;">
-      <span class="label label-info">#<%= picture.id %></span>
-      <% if picture.image.landscape? %>
-          <span class="label label-info" title="Альбомная ориентация">Landscape</span>
-      <% elsif picture.image.portrait? %>
-          <span class="label label-info" title="Портретная ориентация">Portrait</span>
-      <% else %>
-          <span class="label label-info" title="Квадрат">Square,</span>
-      <% end %>
-      <span class="label label-info" title="Размеры"> <%= picture.image.height %> x <%= picture.image.width %>
+        <span class="label label-info">#<%= picture.id %></span>
+        <% if picture.image.landscape? %>
+            <span class="label label-info" title="Альбомная ориентация">Landscape</span>
+        <% elsif picture.image.portrait? %>
+            <span class="label label-info" title="Портретная ориентация">Portrait</span>
+        <% else %>
+            <span class="label label-info" title="Квадрат">Square,</span>
+        <% end %>
+        <span class="label label-info" title="Размеры"> <%= picture.image.height %> x <%= picture.image.width %>
       </span>
       </div>
       <% unless action_name == 'show' %>
           <div style="margin-top: 10px; margin-bottom: 10px;">
             <%= form_tag edit_name_admin_gallery_picture_path(picture.gallery, picture), method: :post, remote: true, class: 'text-muted', :authenticity_token => true do %>
-                <%= text_field(:picture, :name, placeholder: 'Наименование', id: picture.id, value: picture.name || nil, class: 'col-sm-12') %>
+                <%= text_field(:picture, :name, placeholder: 'Наименование', id: picture.id, value: picture.name || nil, class: 'col-sm-12 text-center') %>
             <% end %>
           </div>
+          <div class="btn-group" role="group" aria-label="..." style="margin-top: 10px; margin-bottom: 10px;">
+            <%= link_to fa_icon('angle-double-left'), first_position_admin_gallery_picture_path(picture.gallery.id, picture.id), remote: true, method: :post, class: "btn btn-default btn-xs #{'disabled' if picture.first? }" %>
+            <%= link_to fa_icon('angle-left'), up_position_admin_gallery_picture_path(picture, gallery_id: picture.gallery.id), remote: true, method: :post, class: "btn btn-default btn-xs #{'disabled' if picture.first? }" %>
+            <button class="btn btn-default btn-xs disabled"><%= picture.position %></button>
+            <%= link_to fa_icon('angle-right'), down_position_admin_gallery_picture_path(picture, gallery_id: picture.gallery.id), remote: true, method: :post, class: "btn btn-default btn-xs #{'disabled' if picture.last? }" %>
+            <%= link_to fa_icon('angle-double-right'), last_position_admin_gallery_picture_path(picture, gallery_id: picture.gallery.id), remote: true, method: :post, class: "btn btn-default btn-xs #{'disabled' if picture.last? }" %>
+            <% if Photos.on_home_support_enabled %>
+                <%= link_to fa_icon('home'), on_home_status_admin_gallery_picture_path(picture.gallery, picture), method: :post, remote: true, class: "btn btn-#{picture.on_home ? 'success' : 'default'} btn-xs" %>
+            <% end %>
+
+            <%= link_to fa_icon('trash-o'), admin_gallery_picture_path(picture.gallery, picture), method: :delete, class: 'btn btn-danger btn-xs', remote: true, data: {confirm: 'Вы уверены?'} %>
+          </div>
       <% end %>
-      <div class="btn-group" role="group" aria-label="..." style="margin-top: 10px; margin-bottom: 10px;">
-        <%= link_to fa_icon('angle-double-left'), first_position_admin_gallery_picture_path(picture.gallery.id, picture.id), remote: true, method: :post, class: "btn btn-default btn-xs #{'disabled' if picture.first? }" %>
-        <%= link_to fa_icon('angle-left'), up_position_admin_gallery_picture_path(picture, gallery_id: picture.gallery.id), remote: true, method: :post, class: "btn btn-default btn-xs #{'disabled' if picture.first? }" %>
-        <button class="btn btn-default btn-xs disabled"><%= picture.position %></button>
-        <%= link_to fa_icon('angle-right'), down_position_admin_gallery_picture_path(picture, gallery_id: picture.gallery.id), remote: true, method: :post, class: "btn btn-default btn-xs #{'disabled' if picture.last? }" %>
-        <%= link_to fa_icon('angle-double-right'), last_position_admin_gallery_picture_path(picture, gallery_id: picture.gallery.id), remote: true, method: :post, class: "btn btn-default btn-xs #{'disabled' if picture.last? }" %>
-        <%= link_to fa_icon('trash-o'), admin_gallery_picture_path(picture.gallery, picture), method: :delete, class: 'btn btn-danger btn-xs', remote: true, data: {confirm: 'Вы уверены?'} %>
-      </div>
     </div>
   </div>
 

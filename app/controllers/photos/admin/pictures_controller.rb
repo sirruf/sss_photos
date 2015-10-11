@@ -4,7 +4,7 @@ module Photos
       # noinspection RailsParamDefResolve
       before_filter :authenticate_admin! if defined? Devise
       before_action :set_picture, only: [:show, :destroy, :up_position, :down_position, :first_position, :last_position, :edit_name, :on_home_status, :resize]
-      before_action :set_gallery, only: [:up_position, :down_position, :first_position, :last_position, :on_home_status]
+      before_action :set_gallery, only: [:create, :up_position, :down_position, :first_position, :last_position, :on_home_status]
 
       layout 'admin/control'
 

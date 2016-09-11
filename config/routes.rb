@@ -3,7 +3,7 @@ Photos::Engine.routes.draw do
   resources :galleries, only: [:index, :show] do
     resources :pictures, only: [:show]
   end
-  namespace :admin do
+  namespace Photos.admin_namespace.to_sym do
     resources :galleries do
       member do
         post 'render_versions'

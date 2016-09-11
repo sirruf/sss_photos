@@ -12,18 +12,19 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://it-assist.info/sss'
   s.summary     = 'SSS Photos Module'
   s.description = 'Simple Site System Photo Module'
+  s.licenses = ['MIT']
 
   s.files = Dir["{app,config,db,lib}/**/*", 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency 'rails', '~> 4.0.8'
-  s.add_dependency 'russian'
-  s.add_dependency 'acts_as_list'
-  s.add_dependency 'dragonfly'
-  s.add_dependency 'will_paginate'
-  s.add_dependency 'jquery-rails'
-  s.add_dependency 'jquery-fileupload-rails'
-  s.add_dependency 'font-awesome-rails'
+  s.add_dependency('rails', '~> 4.2')
+  s.add_dependency('russian', '~> 0')
+  s.add_dependency('acts_as_list', '~> 0')
+  s.add_dependency('dragonfly', '~> 0')
+  s.add_dependency('will_paginate', '~> 0')
+  s.add_dependency('jquery-rails', '~> 0')
+  s.add_dependency('jquery-fileupload-rails', '~> 0')
+  s.add_dependency('font-awesome-rails', '~> 0')
 
-  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency('sqlite3', '~> 0')
 end

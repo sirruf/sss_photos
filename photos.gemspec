@@ -18,13 +18,13 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency('rails', '~> 4.2')
-  s.add_dependency('russian', '~> 0')
-  s.add_dependency('acts_as_list', '~> 0')
-  s.add_dependency('dragonfly', '~> 0')
-  s.add_dependency('will_paginate', '~> 0')
-  s.add_dependency('jquery-rails', '~> 0')
-  s.add_dependency('jquery-fileupload-rails', '~> 0')
-  s.add_dependency('font-awesome-rails', '~> 0')
+  s.add_dependency('russian', '~> 0.6')
+  s.add_dependency('acts_as_list', '~> 0.7')
+  s.add_dependency('dragonfly', '~> 1.0')
+  s.add_dependency('will_paginate', '~> 3.1')
+  s.add_dependency('jquery-rails', '~> 4.1')
+  s.add_dependency('jquery-fileupload-rails', '~> 0.4')
+  s.add_dependency('font-awesome-rails', '~> 4.6')
 
-  s.add_development_dependency('sqlite3', '~> 0')
+  s.add_development_dependency('sqlite3', '~> 1.3')
 end

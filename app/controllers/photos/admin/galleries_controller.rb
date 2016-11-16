@@ -18,7 +18,7 @@ module Photos
 
       def show
         @breadcrumbs << {name: @gallery.name, link: ''}
-        @gallery_images = @gallery.pictures.order(position: :desc)
+        @gallery_images = @gallery.pictures.order(position: :asc)
       end
 
       def edit

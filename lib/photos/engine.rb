@@ -13,5 +13,4 @@ module Photos
   require 'jquery-rails'
   require 'jquery-fileupload-rails'
   require 'font-awesome-rails'
-  require 'breadcrumbs_on_rails'
 end

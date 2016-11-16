@@ -48,7 +48,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <ul id="images" class="list-unstyled">
-      <%= render partial: 'photos/admin/pictures/picture', collection: @gallery_images.order('id ASC') if @gallery_images.present? %>
+      <%= render partial: 'photos/admin/pictures/picture', collection: @gallery_images.order(id: :desc) if @gallery_images.present? %>
     </ul>
   </div>
 </div>

@@ -46,11 +46,26 @@
   </div>
 </div>
 <div class="panel panel-default">
-  <div class="panel-body">
-    <ul id="images" class="list-unstyled">
-      <%= render partial: 'photos/admin/pictures/picture', collection: @gallery_images if @gallery_images.present? %>
-    </ul>
+  <!--<div class="panel-body">-->
+    <!--<ul id="images" class="list-unstyled">-->
+      <!--<%#= render partial: 'photos/admin/pictures/picture', collection: @gallery_images if @gallery_images.present? %>-->
+    <!--</ul>-->
+  <!--</div>-->
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= form_for([:admin, @gallery, Photos::Picture.new], remote: false, :html => {:class => '', :multipart => true}) do |f| %>
+          <%= f.hidden_field :gallery_id, value: @gallery.id %>
+          <%= f.file_field :image, multiple: true, name: 'picture[image]' %>
+      <% end %>
+      <hr/>
+      <ul id="images" class="list-unstyled">
+        <%#= render @gallery_images if @gallery_images.present? %>
+        <%= render partial: 'photos/admin/pictures/picture', collection: @gallery_images if @gallery_images.present? %>
+      </ul>
+
+    </div>
   </div>
+
 </div>
 <p>
 </p>

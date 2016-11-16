@@ -15,7 +15,7 @@ module Photos
     validates_property :format, of: :image, in: [:jpeg, :jpg, :png, :bmp], case_sensitive: false,
                        message: 'должно быть в формате .jpeg, .jpg, .png, .bmp', if: :image_changed?
 
-    default_scope { order(:position) }
+    # default_scope { order(:position) }
     scope :publushed_on_home, -> { where(on_home: true) }
 
     def self.random_images(count = 3)

@@ -18,13 +18,13 @@ module Photos
 
       def show
         @breadcrumbs << {name: @gallery.name, link: ''}
-        @gallery_images = @gallery.pictures.order(position: :asc)
+        @gallery_images = @gallery.pictures.order(id: :desc)
       end
 
       def edit
         @breadcrumbs << {name: @gallery.name, link: admin_gallery_path(@gallery)}
         @breadcrumbs << {name: 'Редактирование', link: nil}
-        @gallery_images = @gallery.pictures.order(:position)
+        @gallery_images = @gallery.pictures.order(id: :desc)
       end
 
       def create

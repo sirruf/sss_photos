@@ -70,7 +70,7 @@ module Photos
 
       def set_gallery
         @gallery = Gallery.find(params[:gallery_id])
-        @gallery_images = @gallery.pictures.order(:position)
+        @gallery_images = @gallery.pictures.order(id: :desc)
       end
 
       def picture_params
